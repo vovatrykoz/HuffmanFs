@@ -12,3 +12,23 @@ module internal Huffman =
             frequency.[currentByte] <- frequency.GetValueOrDefault currentByte + 1
 
         frequency
+
+    let buildHuffmanTree (frequency: Dictionary<byte, int>) =
+        if frequency.Count = 0 then
+            invalidArg (nameof frequency) "The frequency collection of elements was empty"
+
+        let priorityQueue = PriorityQueue<HuffmanTree<byte> * int, int>()
+
+        for KeyValue(k, v) in frequency do
+            priorityQueue.Enqueue((HuffmanTree.createLeaf k, v), v)
+
+        while priorityQueue.Count >= 2 do
+            let left, leftWeight = priorityQueue.Dequeue()
+            let right, rightWeight = priorityQueue.Dequeue()
+            let newNode = HuffmanTree.createNode left right
+            let newWeight = leftWeight + rightWeight
+
+            priorityQueue.Enqueue((newNode, newWeight), newWeight)
+
+        let tree, _ = priorityQueue.Dequeue()
+        tree
