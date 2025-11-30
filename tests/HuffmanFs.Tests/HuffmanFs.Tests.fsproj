@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="UnitTest1.fs" />
+    <Compile Include="HuffmanTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
@@ -25,5 +25,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\HuffmanFs.Core\HuffmanFs.Core.fsproj" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <WarningLevel>5</WarningLevel>
+    <AnalysisLevel>5</AnalysisLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
 
 </Project>
